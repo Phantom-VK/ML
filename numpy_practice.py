@@ -9,3 +9,5 @@ arr2 = np.arange(0,10)
 print(arr2)
 arr3 = np.ones((1, 10))
 print(arr3)
+
+# Vectorized operations
