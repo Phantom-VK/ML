@@ -1,0 +1,70 @@
+# 🚦 When to Use LabelEncoder, OneHotEncoder, or OrdinalEncoder
+
+## 🧩 1. **LabelEncoder**
+
+> 🔥 Converts categories to integers
+> 💥 Works only on **single column**
+
+### ✅ Use When:
+
+* **Encoding the target variable (`y`)** in classification
+* Using **tree-based models** (e.g., Decision Tree, XGBoost) for **categorical features**
+
+### ❌ Don’t Use When:
+
+* You’re encoding input features for **linear models** (e.g., Logistic Regression, SVM)
+* The category has **no order**, and assigning a number implies one
+
+---
+
+## 🧩 2. **OneHotEncoder**
+
+> 🔥 Converts each category into a new **binary column**
+
+### ✅ Use When:
+
+* Categorical feature has **no natural order** (nominal)
+* You're using **linear models**, **logistic regression**, or **neural networks**
+* Examples:
+
+  * `['Economy', 'Business']`
+  * `['Red', 'Green', 'Blue']`
+  * `['Male', 'Female']`
+
+### ❌ Avoid When:
+
+* There are **too many unique categories** (high cardinality)
+* You're using tree models (they handle label encoding better)
+
+---
+
+## 🧩 3. **OrdinalEncoder**
+
+> 🔥 Converts categories to integers **with known order**
+
+### ✅ Use When:
+
+* Categories have a **meaningful order**
+* Examples:
+
+  * `['Low', 'Medium', 'High']`
+  * `['zero', 'one', 'two_or_more']`
+  * `['Beginner', 'Intermediate', 'Expert']`
+
+### ❌ Don’t Use When:
+
+* There's **no natural order**
+* You're unsure of the order — it could introduce bias
+
+---
+
+
+## 🔁 Summary Table
+
+| Encoding Type      | Use Case                        | Suitable For                | Notes                             |
+| ------------------ | ------------------------------- | --------------------------- | --------------------------------- |
+| **LabelEncoder**   | Encode labels or tree features  | Tree models, target `y`     | Alphabetical → integer            |
+| **OneHotEncoder**  | Encode unordered input features | Linear models, DL           | Expands into multiple binary cols |
+| **OrdinalEncoder** | Encode ordered input features   | Tree or linear (with order) | Must define order manually        |
+
+---
