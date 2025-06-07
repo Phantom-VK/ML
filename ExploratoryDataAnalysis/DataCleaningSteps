@@ -1,0 +1,75 @@
+# Data Cleaning Steps and Methods
+
+"""
+Step 1: Understand the Data
+- Load the data using pandas: pd.read_csv(), pd.read_excel()
+- Use .head(), .info(), .describe() to inspect structure and summary
+"""
+
+# Example:
+import pandas as pd
+df = pd.read_csv("your_data.csv")
+print(df.head())
+print(df.info())
+
+"""
+Step 2: Handle Missing Values
+- Detect: df.isnull().sum()
+- Remove: df.dropna()
+- Impute:
+    - Mean/Median for numerical: df['col'].fillna(df['col'].mean())
+    - Mode for categorical: df['col'].fillna(df['col'].mode()[0])
+    - Forward/Backward fill: df.fillna(method='ffill')
+"""
+
+"""
+Step 3: Handle Duplicates
+- Find: df.duplicated()
+- Remove: df.drop_duplicates()
+"""
+
+"""
+Step 4: Fix Data Types
+- Convert using: df['col'] = df['col'].astype(desired_type)
+- Useful conversions: to_datetime(), to_numeric()
+"""
+
+"""
+Step 5: Handle Outliers
+- Visualize: boxplot, histogram
+- Methods: IQR method, Z-score
+"""
+
+"""
+Step 6: Standardize/Normalize Data
+- Use MinMaxScaler or StandardScaler from sklearn for ML preprocessing
+"""
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+df[['num_col1', 'num_col2']] = scaler.fit_transform(df[['num_col1', 'num_col2']])
+
+"""
+Step 7: Encode Categorical Variables
+- LabelEncoder: for ordinal or tree-based models
+- OneHotEncoder / pd.get_dummies: for nominal features
+"""
+
+"""
+Step 8: Rename or Drop Irrelevant Columns
+- Rename: df.rename(columns={'old': 'new'})
+- Drop: df.drop(['col1', 'col2'], axis=1)
+"""
+
+"""
+Step 9: Consistent Formatting
+- Strip whitespace: df['col'] = df['col'].str.strip()
+- Lowercase text: df['col'] = df['col'].str.lower()
+- Remove special characters using regex
+"""
+
+"""
+Step 10: Reindex or Reset Index if needed
+- df.reset_index(drop=True, inplace=True)
+"""
+
+# Final Tip: Always validate cleaning with df.info(), df.describe(), df.head()
